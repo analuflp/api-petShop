@@ -1,0 +1,25 @@
+service: app-example
+frameworkVersion: '3'
+ 
+plugins: 
+  - serverless-offline
+ 
+custom:
+  serverless-offline:
+    httpPort: 3000
+    lambdaPort: 3001
+    endpoint: http://localhost:3001
+ 
+provider:
+  name: aws
+  runtime: nodejs14.x
+  stage: dev
+ 
+functions:
+  helloWorld:
+    name: ${self:service}-helloWorld
+    handler: src/helloWorld.execute
+    events:
+      - http:
+          path: /api/hello
+          method: get
