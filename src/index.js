@@ -15,9 +15,14 @@ const ItemSchema = new mongoose.Schema({
 
 const Item = mongoose.model('Item', ItemSchema);
 
-app.get("/", (req,res) => {
-    res.send("")
-})
+app.get("/list-item", async  (req,res) => {
+    try {
+        const Items = await Item.find();
+        res.status(200).send(Items)
+    } catch (error) {
+        res.status(500).send({error: 'Erro ao processar solicitação'})
+        }
+    })
 
 
 
