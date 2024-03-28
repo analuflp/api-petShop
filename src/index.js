@@ -11,7 +11,7 @@ const ItemSchema = new mongoose.Schema({
     description: String,
     price: Number,
     image_Url: String,
-  });
+  })
 
 const Item = mongoose.model('Item', ItemSchema);
 
@@ -71,10 +71,10 @@ app.post('/new-item', async (req, res) => {
 
 
 
-
+  module.exports = app
+  mongoose.connect('mongodb+srv://anafelipe:s2V6sEJwysTfDY1x@api-pet-items.9smgffl.mongodb.net/?retryWrites=true&w=majority&appName=api-pet-items');
 
 
 app.listen(port, () => {
-    mongoose.connect('mongodb+srv://anafelipe:s2V6sEJwysTfDY1x@api-pet-items.9smgffl.mongodb.net/?retryWrites=true&w=majority&appName=api-pet-items');
     console.log(` app listening on port ${port}`)
   })

@@ -5,11 +5,15 @@
   "repository": "ssh://git@git.phoebus.com.br:2222/ana.felipe/app-smart-loja-pet.git",
   "license": "MIT",
   "devDependencies": {
+    "jest": "^29.7.0",
     "nodemon": "^3.1.0",
-    "serverless-offline": "^13.3.3"
+    "serverless-offline": "^13.3.3",
+    "supertest": "^6.3.4"
   },
   "scripts": {
-    "dev": "nodemon --exec \"serverless offline -c serverless_local.yml\""
+    "dev": "nodemon --exec \"serverless offline -c serverless_local.yml\"",
+    "test": "jest"
+    
   },
   "dependencies": {
     "express": "^4.19.2",
