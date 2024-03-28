@@ -3,22 +3,73 @@ const mongoose = require('mongoose')
 
 
 const app = express()
+app.use(express.json())
 const port = 3000
-mongoose.connect('mongodb+srv://anafelipe:<password>@api-pet-items.9smgffl.mongodb.net/?retryWrites=true&w=majority&appName=api-pet-items');
 
-
-const Item = mongoose.model('Item', { 
+const ItemSchema = new mongoose.Schema({
     name: String,
     description: String,
     price: Number,
-    image_Url: String
+    image_Url: String,
+  });
 
-});
+const Item = mongoose.model('Item', ItemSchema);
 
 app.get("/", (req,res) => {
     res.send("")
 })
 
+
+
+app.post('/new-item', async (req, res) => {
+    try {
+      const requiredFields = ['name', 'price'];
+      requiredFields.forEach((field) => {
+        if (!req.body[field]) {
+          throw new Error(`Campo '${field}' é obrigatório`);
+        }
+      });
+  
+      if (typeof req.body.price !== 'number') {
+        throw new Error(`Campo 'price' deve ser um número`);
+      }
+  
+      const item = new Item(req.body);
+      const savedItem = await item.save();
+  
+      res.status(201).send(savedItem);
+    } catch (error) {
+      const errorResponse = {
+        timestamp: new Date().toISOString(),
+        status: 400,
+        error: 'Bad Request',
+        message: 'Erro ao processar a solicitação',
+        errors: [
+          {
+            defaultMessage: error.message,
+            field: error.field,
+            rejectedValue: error.rejectedValue,
+          },
+        ],
+      };
+  
+      
+      if (error instanceof Error) {
+        errorResponse.errors[0].defaultMessage = error.message;
+      }
+  
+      res.status(400).json(errorResponse);
+    }
+  });
+       
+    
+
+
+
+
+
+
 app.listen(port, () => {
+    mongoose.connect('mongodb+srv://anafelipe:s2V6sEJwysTfDY1x@api-pet-items.9smgffl.mongodb.net/?retryWrites=true&w=majority&appName=api-pet-items');
     console.log(` app listening on port ${port}`)
   })
