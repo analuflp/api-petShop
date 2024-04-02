@@ -1,4 +1,4 @@
-service: app-example
+service: api-loja-pet
 frameworkVersion: '3'
  
 plugins: 
@@ -16,10 +16,19 @@ provider:
   stage: dev
  
 functions:
-  helloWorld:
-    name: ${self:service}-helloWorld
-    handler: src/helloWorld.execute
+   createItem:
+    name: ${self:service}-createItem
+    handler: src\service\createItem.execute
+    timeout: 30
     events:
       - http:
-          path: /api/hello
+          path: /api/item
+          method: post
+   getAllItems:
+    name: ${self:service}-getAll
+    handler: src\service\getAllItems.execute
+    events:
+      - http:
+          path: /api/item
           method: get
+  

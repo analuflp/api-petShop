@@ -13,9 +13,9 @@
   "scripts": {
     "dev": "nodemon --exec \"serverless offline -c serverless_local.yml\"",
     "test": "jest"
-    
   },
   "dependencies": {
+    "body-parser": "^1.20.2",
     "express": "^4.19.2",
     "mongodb": "^6.5.0",
     "mongoose": "^8.2.3"
