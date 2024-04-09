@@ -1,9 +1,9 @@
 
 const mongoose = require('mongoose');
 
-async function connect() {
+module.exports.connect = async function () {
   try {
-    await mongoose.connect('mongodb+srv://anafelipe:s2V6sEJwysTfDY1x@api-pet-items.9smgffl.mongodb.net/?retryWrites=true&w=majority&appName=api-pet-items', {
+    await mongoose.connect('mongodb+srv://anafelipe:s2V6sEJwysTfDY1x@api-pet-items.9smgffl.mongodb.net/', {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
@@ -13,4 +13,4 @@ async function connect() {
   }
 }
 
-module.exports = { connect };
+

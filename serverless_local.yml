@@ -9,6 +9,7 @@ custom:
     httpPort: 3000
     lambdaPort: 3001
     endpoint: http://localhost:3001
+    timeout: 5000
  
 provider:
   name: aws
@@ -27,6 +28,7 @@ functions:
    getAllItems:
     name: ${self:service}-getAll
     handler: src\service\getAllItems.execute
+    timeout: 30
     events:
       - http:
           path: /api/item
