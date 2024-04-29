@@ -1,11 +1,15 @@
 
 const Ajv = require('ajv');
+const addFormats = require("ajv-formats")
 const ajv = new Ajv();
+addFormats(ajv)
 
 const ItemSchema = {
   type: 'object',
   properties: {
-    name: { type: 'string' },
+    name: { type: 'string',
+            pattern: '^[a-zA-ZÀ-ÚÜÇçãẽĩõũÁÉÍÓÕÚÜáéíóõúü\\s]*$',
+             },
     description: { type: 'string' },
     price: { type: 'number',
               minimum: 1,

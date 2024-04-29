@@ -2,7 +2,7 @@ const Item = require('../model/Item');
 const { connect } = require('../Database/database.js');
 const GeneralResponseError = require('../exception/GeneralResponseError')
 
-// Wrap the connection logic in a function
+
 async function connectToDatabase() {
   try {
     await connect();
@@ -13,7 +13,7 @@ async function connectToDatabase() {
   }
 }
 
-// Call the connectToDatabase function to establish the connection
+
 connectToDatabase();
 
 module.exports.execute = async (req) => {
