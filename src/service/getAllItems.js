@@ -2,14 +2,19 @@ const Item = require('../model/Item');
 const { connect } = require('../Database/database.js');
 const GeneralResponseError = require('../exception/GeneralResponseError')
 
-connect()
-  .then(() => {
+// Wrap the connection logic in a function
+async function connectToDatabase() {
+  try {
+    await connect();
     console.log('Connected to MongoDB');
-  })
-  .catch((error) => {
+  } catch (error) {
     console.error('Error connecting to MongoDB:', error);
-    process.exit(1); 
-  });
+    process.exit(1);
+  }
+}
+
+// Call the connectToDatabase function to establish the connection
+connectToDatabase();
 
 module.exports.execute = async (req) => {
 

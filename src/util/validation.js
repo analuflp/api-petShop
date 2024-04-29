@@ -7,7 +7,9 @@ const ItemSchema = {
   properties: {
     name: { type: 'string' },
     description: { type: 'string' },
-    price: { type: 'number' },
+    price: { type: 'number',
+              minimum: 1,
+               },
     image_url: { type: 'string' }
   },
   required: ['name', 'description', 'price', 'image_url']
