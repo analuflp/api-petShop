@@ -19,7 +19,7 @@ provider:
 functions:
    createItem:
     name: ${self:service}-createItem
-    handler: src\service\createItem.execute
+    handler: src/service/createItem.execute
     timeout: 30
     events:
       - http:
